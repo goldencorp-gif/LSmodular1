@@ -1,0 +1,7 @@
+{
+  "name": "Le Sector - Design-Led Modular Housing",
+  "description": "A high-conversion multi-variant landing page and Google Ads management system for Le Sector modular construction.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

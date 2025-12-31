@@ -1,0 +1,9 @@
+
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="120" fill="none"/>
+<path d="M50 30H70V80H50V30Z" fill="#2563EB"/>
+<path d="M70 70H100V90H50V70Z" fill="#0F172A"/>
+<path d="M30 40H50V60H30V40Z" fill="#0F172A"/>
+<text x="120" y="80" font-family="Arial, sans-serif" font-weight="900" font-size="60" fill="#0F172A" letter-spacing="-2">LE SECTOR</text>
+<text x="123" y="100" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#94A3B8" letter-spacing="4" text-transform="uppercase">Modular Delivery</text>
+</svg>
