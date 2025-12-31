@@ -94,6 +94,38 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
     { title: "Vite Build Optmization", desc: "Move from CDN to a local build system for 0.5s load times.", icon: "fa-solid fa-rocket" }
   ];
 
+  // Helper for Theme Colors to ensure Tailwind picks them up
+  const getTheme = (variant: string) => {
+    if (variant === PageVariant.HOMEOWNERS) {
+      return {
+        gradient: 'from-blue-50',
+        iconColor: 'text-blue-600',
+        iconBg: 'group-hover:bg-blue-600',
+        border: 'border-blue-100',
+        faintText: 'text-blue-600/5',
+        titleHover: 'group-hover:text-blue-600'
+      };
+    }
+    if (variant === PageVariant.DEVELOPERS) {
+      return {
+        gradient: 'from-indigo-50',
+        iconColor: 'text-indigo-600',
+        iconBg: 'group-hover:bg-indigo-600',
+        border: 'border-indigo-100',
+        faintText: 'text-indigo-600/5',
+        titleHover: 'group-hover:text-indigo-600'
+      };
+    }
+    return {
+      gradient: 'from-slate-50',
+      iconColor: 'text-slate-600',
+      iconBg: 'group-hover:bg-slate-600',
+      border: 'border-slate-100',
+      faintText: 'text-slate-600/5',
+      titleHover: 'group-hover:text-slate-600'
+    };
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center pt-20 px-4">
@@ -277,7 +309,7 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
       {activeTab === 'campaigns' && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {Object.entries(ADS_STRUCTURE).map(([key, group]) => {
-            const color = key === PageVariant.HOMEOWNERS ? 'blue' : key === PageVariant.DEVELOPERS ? 'indigo' : 'slate';
+            const theme = getTheme(key);
             const icon = key === PageVariant.HOMEOWNERS ? 'fa-solid fa-house-chimney-window' : key === PageVariant.DEVELOPERS ? 'fa-solid fa-city' : 'fa-solid fa-compass-drafting';
             
             return (
@@ -285,15 +317,15 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                 key={key} 
                 className="group bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-2"
               >
-                <div className={`p-8 bg-gradient-to-br from-${color}-50 to-white border-b border-slate-100 relative overflow-hidden`}>
-                  <div className={`absolute -right-4 -top-4 text-8xl text-${color}-600/5 group-hover:scale-110 transition-transform duration-500`}>
+                <div className={`p-8 bg-gradient-to-br ${theme.gradient} to-white border-b border-slate-100 relative overflow-hidden`}>
+                  <div className={`absolute -right-4 -top-4 text-8xl ${theme.faintText} group-hover:scale-110 transition-transform duration-500`}>
                     <i className={icon}></i>
                   </div>
-                  <div className={`w-14 h-14 bg-white shadow-md border border-${color}-100 rounded-2xl flex items-center justify-center text-2xl text-${color}-600 mb-6 group-hover:bg-${color}-600 group-hover:text-white transition-all duration-300`}>
+                  <div className={`w-14 h-14 bg-white shadow-md ${theme.border} rounded-2xl flex items-center justify-center text-2xl ${theme.iconColor} mb-6 ${theme.iconBg} group-hover:text-white transition-all duration-300`}>
                     <i className={icon}></i>
                   </div>
                   <div className="flex justify-between items-start">
-                    <h2 className="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition-colors leading-none">
+                    <h2 className={`text-2xl font-black text-slate-900 mb-2 tracking-tight ${theme.titleHover} transition-colors leading-none`}>
                         {group.name.split(':')[1] || group.name}
                     </h2>
                   </div>
