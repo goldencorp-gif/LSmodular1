@@ -292,9 +292,15 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                   <div className={`w-14 h-14 bg-white shadow-md border border-${color}-100 rounded-2xl flex items-center justify-center text-2xl text-${color}-600 mb-6 group-hover:bg-${color}-600 group-hover:text-white transition-all duration-300`}>
                     <i className={icon}></i>
                   </div>
-                  <h2 className="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition-colors">
-                    {group.name.split(':')[1] || group.name}
-                  </h2>
+                  <div className="flex justify-between items-start">
+                    <h2 className="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition-colors leading-none">
+                        {group.name.split(':')[1] || group.name}
+                    </h2>
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                     <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-[9px] font-bold uppercase">Enabled</span>
+                     <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-[9px] font-bold uppercase">Search</span>
+                  </div>
                 </div>
                 
                 <div className="p-8 flex-grow space-y-8">
@@ -302,7 +308,7 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                   <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 group-hover:bg-white transition-colors duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="px-1.5 py-0.5 border border-slate-400 text-[9px] font-bold text-slate-500 rounded leading-none uppercase">Ad</div>
-                      <div className="text-[10px] text-slate-500 truncate">www.lesector.com.au/modular</div>
+                      <div className="text-[10px] text-slate-500 truncate">www.lesector.com/modular</div>
                     </div>
                     <h3 className="text-lg font-bold text-blue-700 mb-1 leading-tight">
                       {group.headlines[0]}
@@ -336,7 +342,15 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
 
                   {/* Targeting Specs */}
                   <div className="bg-slate-900 rounded-2xl p-5 text-white/90">
-                     <h4 className="text-[9px] font-black text-blue-400 uppercase tracking-widest mb-3">Targeting Specs</h4>
+                     <div className="flex justify-between items-center mb-3">
+                        <h4 className="text-[9px] font-black text-blue-400 uppercase tracking-widest">Ad Strength</h4>
+                        <div className="flex gap-0.5">
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            <div className="w-2 h-2 rounded-full bg-blue-500/30"></div>
+                        </div>
+                     </div>
                      <div className="space-y-3">
                         <div className="flex items-start gap-3">
                           <i className="fa-solid fa-location-dot text-[10px] mt-1 text-slate-500"></i>

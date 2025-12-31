@@ -1,7 +1,7 @@
 
 import { PageVariant, AdGroup, LandingPageContent } from './types';
 
-export const SYSTEM_VERSION = '1.1';
+export const SYSTEM_VERSION = '1.2';
 
 // Populate all PageVariant keys to satisfy Record<PageVariant, AdGroup>
 export const ADS_STRUCTURE: Record<PageVariant, AdGroup> = {

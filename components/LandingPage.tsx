@@ -23,13 +23,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ variant, onNotify }) =
      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
+  // Dynamic Image Logic
+  const getHeroImage = () => {
+    if (variant === PageVariant.HOMEOWNERS) {
+      // Architectural drawings / blue print focus
+      return `https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=1920`;
+    }
+    return `https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1920`;
+  };
+
   return (
     <div className="pt-32 lg:pt-40">
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src={`https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1920`} 
+            src={getHeroImage()}
             alt="Hero Background" 
             className="w-full h-full object-cover opacity-40"
           />
