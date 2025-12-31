@@ -84,6 +84,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({ variant, onNotify }) =
              </div>
           </div>
         </div>
+
+        {/* Feature Highlight for Homeowners with Plans */}
+        {variant === PageVariant.HOMEOWNERS && (
+          <div className="absolute bottom-0 w-full bg-white/10 backdrop-blur-md border-t border-white/10 py-6 px-4 hidden lg:block">
+             <div className="max-w-7xl mx-auto flex justify-center gap-16">
+                <div className="flex items-center gap-4 text-white opacity-80 hover:opacity-100 transition-opacity cursor-default">
+                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i className="fa-solid fa-file-pdf"></i></div>
+                   <div>
+                     <p className="text-[10px] font-black uppercase tracking-widest">Plan Upload</p>
+                     <p className="text-xs">PDF / DWG Accepted</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-4 text-white opacity-80 hover:opacity-100 transition-opacity cursor-default">
+                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i className="fa-solid fa-clock"></i></div>
+                   <div>
+                     <p className="text-[10px] font-black uppercase tracking-widest">Turnaround</p>
+                     <p className="text-xs">24hr Feasibility Check</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-4 text-white opacity-80 hover:opacity-100 transition-opacity cursor-default">
+                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i className="fa-solid fa-ruler-combined"></i></div>
+                   <div>
+                     <p className="text-[10px] font-black uppercase tracking-widest">Included</p>
+                     <p className="text-xs">Setback Analysis</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+        )}
       </section>
 
       {/* Problem Section */}

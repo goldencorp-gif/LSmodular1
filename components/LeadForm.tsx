@@ -68,6 +68,17 @@ export const LeadForm: React.FC<LeadFormProps> = ({ variant }) => {
          variant === PageVariant.DEVELOPERS ? 'Modular Development Strategy' : 
          'Architectural Partnership'}
       </h3>
+      
+      {variant === PageVariant.HOMEOWNERS && (
+          <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-4 flex items-start gap-3">
+              <i className="fa-solid fa-file-circle-check text-blue-600 mt-0.5"></i>
+              <div>
+                  <p className="text-[10px] font-bold text-blue-800 uppercase tracking-wide">Free Feasibility Review</p>
+                  <p className="text-xs text-blue-600 leading-tight">Upload your plans and we'll check modular compatibility within 24h.</p>
+              </div>
+          </div>
+      )}
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Full Name</label>

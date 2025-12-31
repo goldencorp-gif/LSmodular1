@@ -1,7 +1,7 @@
 
 import { PageVariant, AdGroup, LandingPageContent } from './types';
 
-export const SYSTEM_VERSION = '1.0';
+export const SYSTEM_VERSION = '1.1';
 
 // Populate all PageVariant keys to satisfy Record<PageVariant, AdGroup>
 export const ADS_STRUCTURE: Record<PageVariant, AdGroup> = {
@@ -122,19 +122,39 @@ export const ADS_STRUCTURE: Record<PageVariant, AdGroup> = {
       interests: "Architecture, Interior Design, Software"
     }
   },
+  
+  // --- CAMPAIGN 1: HOMEOWNERS (UPDATED) ---
   [PageVariant.HOMEOWNERS]: {
     name: "Campaign 1: Homeowners – 'Have Plans'",
-    intent: "High-intent users who already have drawings or are speaking with designers.",
-    keywords: ["modular homes with own design", "custom modular homes", "modular home builders", "build modular from plans"],
-    headlines: ["Modular Homes Built to Your Design", "Have Plans? Build Modular", "Design-Led Modular Housing"],
-    descriptions: ["Turn your drawings into a modular home. Faster timelines, greater certainty.", "Submit your plans today for a feasibility review."],
-    extensions: ["Our Process", "Success Stories", "Download Brochure", "Request a Quote"],
+    intent: "Capturing users searching for builders to execute existing architectural drawings.",
+    keywords: [
+      "build modular from own plans", 
+      "custom modular builder melbourne", 
+      "architectural modular construction", 
+      "can i use my own plans for modular home"
+    ],
+    headlines: [
+      "Have Plans? Build Modular.", 
+      "Your Design. Delivered.", 
+      "Bring Your Own Architect"
+    ],
+    descriptions: [
+      "Don't compromise your vision. We translate your existing drawings into precision modules.", 
+      "Upload your plans for a free technical feasibility review today."
+    ],
+    extensions: [
+      "Upload Your Plans", 
+      "Free Feasibility Check", 
+      "How It Works", 
+      "View Projects"
+    ],
     targeting: {
-      location: "Radius 50km from Metro Hubs",
-      demographics: "35-65+, Homeowners",
-      interests: "Architecture, Sustainable Living, Home Improvement"
+      location: "Victoria (Metro + 100km)",
+      demographics: "Age 35-65, Top 20% Income",
+      interests: "Architecture, Renovation, Self-Build, Sustainability"
     }
   },
+  
   [PageVariant.DEVELOPERS]: {
     name: "Campaign 2: Investors & Developers",
     intent: "Cost certainty, speed, and repeatability.",
@@ -342,28 +362,34 @@ export const PAGE_CONTENT: Record<PageVariant, LandingPageContent> = {
   [PageVariant.HOMEOWNERS]: {
     hero: {
       headline: "Have Plans? Build Modular.",
-      subheadline: "Le Sector transforms client-designed plans into high-quality modular homes—delivered faster and with greater certainty.",
-      cta: "Submit Your Plans"
+      subheadline: "We are the delivery partner for homeowners who have their own designs. We translate your PDF/DWG files into precision-built modular homes.",
+      cta: "Upload Plans for Review"
     },
     problem: {
-      title: "The Construction Dilemma",
-      content: "Traditional construction is slow, fragmented, and unpredictable. Modular construction offers speed—but often sacrifices design flexibility. Le Sector removes that compromise."
+      title: "The 'Kit Home' Problem",
+      content: "Most modular builders force you into their standard catalogue. Traditional builders are slow and expensive. You have a vision—you just need a better way to build it."
     },
     solution: {
-      title: "Design-Led Modular Housing",
+      title: "Your Design, Modular Method",
       benefits: [
-        "Build from your architect or designer plans",
-        "Faster build timelines",
-        "Factory-controlled quality",
-        "Coordinated site and foundation delivery"
+        "We build from YOUR architectural plans",
+        "Free feasibility check (PDF/DWG)",
+        "Precision factory manufacturing",
+        "30-50% faster than onsite construction"
       ]
     },
+    idealProjects: [
+      "Custom Architectural Homes",
+      "Complex Rear Extensions",
+      "Knockdown Rebuilds",
+      "Holiday Homes / 2nd Dwellings"
+    ],
     howItWorks: [
-      "Submit Your Plans",
-      "Feasibility & Design Coordination",
-      "Modular Manufacture",
-      "Site Preparation & Foundations",
-      "Delivery & Installation"
+      "Upload Plans (PDF/DWG)",
+      "Feasibility Check (24h)",
+      "Modular Optimization",
+      "Manufacture & Groundworks",
+      "Install & Handover"
     ]
   },
   [PageVariant.DEVELOPERS]: {

@@ -302,7 +302,7 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                   <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 group-hover:bg-white transition-colors duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="px-1.5 py-0.5 border border-slate-400 text-[9px] font-bold text-slate-500 rounded leading-none uppercase">Ad</div>
-                      <div className="text-[10px] text-slate-500 truncate">www.lesector.com/modular</div>
+                      <div className="text-[10px] text-slate-500 truncate">www.lesector.com.au/modular</div>
                     </div>
                     <h3 className="text-lg font-bold text-blue-700 mb-1 leading-tight">
                       {group.headlines[0]}
@@ -316,6 +316,21 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                           {ext}
                         </div>
                       ))}
+                    </div>
+
+                    {/* KEYWORDS SECTION (VISUALIZED) */}
+                    <div className="mt-6 pt-4 border-t border-slate-200 border-dashed">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Keywords (Phrase)</p>
+                        <i className="fa-solid fa-magnifying-glass text-slate-300 text-[10px]"></i>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {group.keywords.map((kw, k) => (
+                          <span key={k} className="px-2 py-1 bg-white text-slate-600 text-[10px] rounded border border-slate-200 font-mono">
+                            "{kw}"
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
@@ -340,8 +355,8 @@ export const AdsDashboard: React.FC<AdsDashboardProps> = ({ onSelectVariant }) =
                     onClick={() => onSelectVariant(key as PageVariant)}
                     className="w-full py-4 px-6 bg-slate-900 text-white text-xs font-black uppercase tracking-[0.2em] rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all flex items-center justify-center gap-3"
                   >
-                    Launch Variant
-                    <i className="fa-solid fa-rocket text-[10px]"></i>
+                    View Landing Page
+                    <i className="fa-solid fa-arrow-right-long text-[10px]"></i>
                   </button>
                 </div>
               </div>
