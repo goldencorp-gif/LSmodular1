@@ -22,12 +22,12 @@ const App: React.FC = () => {
   
   // Settings for Logos
   const [siteSettings, setSiteSettings] = useState<SiteSettings>({
-    logoUrl: '/logo.svg', // Updated to use the generated SVG
-    footerLogoUrl: undefined 
+    logoUrl: '/logo.svg', // Default vector logo
+    footerLogoUrl: undefined // Will fallback to logoUrl if not set in JSON
   });
 
   useEffect(() => {
-    // Attempt to load custom settings from site-settings.json if it exists
+    // Attempt to load custom settings from site-settings.json
     fetch('/site-settings.json')
       .then(res => {
         if (res.ok) return res.json();
@@ -35,7 +35,12 @@ const App: React.FC = () => {
       })
       .then(data => {
         if (data) {
-          setSiteSettings(prev => ({ ...prev, ...data }));
+          setSiteSettings(prev => ({ 
+            ...prev, 
+            ...data,
+            // Ensure we handle the case where footerLogoUrl might be in JSON but empty
+            footerLogoUrl: data.footerLogoUrl || undefined 
+          }));
         }
       })
       .catch(() => {
@@ -104,6 +109,11 @@ const App: React.FC = () => {
     setCurrentView(variant);
   };
 
+  // Logic to determine which logo to use for the footer
+  const activeFooterLogo = siteSettings.footerLogoUrl && siteSettings.footerLogoUrl.trim() !== "" 
+    ? siteSettings.footerLogoUrl 
+    : siteSettings.logoUrl;
+
   return (
     <div className="min-h-screen selection:bg-blue-100 selection:text-blue-900 bg-slate-50 flex flex-col">
       <Navigation 
@@ -122,7 +132,7 @@ const App: React.FC = () => {
         <Footer 
           language={language} 
           setVariant={handleVariantChange} 
-          logoUrl={siteSettings.footerLogoUrl || siteSettings.logoUrl}
+          logoUrl={activeFooterLogo}
         />
       )}
 
