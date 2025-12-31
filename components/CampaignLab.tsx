@@ -21,7 +21,13 @@ export const CampaignLab: React.FC = () => {
     setError(null);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // Safe access to API Key
+      const apiKey = process?.env?.API_KEY;
+      if (!apiKey) {
+        throw new Error("API Key not found. Please ensure process.env.API_KEY is configured.");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const langNames = {
         [Language.EN]: 'English',
         [Language.ZH]: 'Mandarin Chinese',
@@ -31,7 +37,7 @@ export const CampaignLab: React.FC = () => {
       const langName = langNames[targetLang];
       
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.0-flash",
         contents: `Generate a professional Google Search Ad strategy for a modular construction company called 'Le Sector'. 
         The user's project is: ${prompt}. 
         CRITICAL: All generated ad copy (headlines, descriptions, extensions) must be in ${langName}.
@@ -63,9 +69,9 @@ export const CampaignLab: React.FC = () => {
 
       const data = JSON.parse(response.text || '{}');
       setResult(data);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Failed to connect to Strategy Lab. Please check your connection.");
+      setError(err.message || "Failed to connect to Strategy Lab.");
     } finally {
       setLoading(false);
     }
