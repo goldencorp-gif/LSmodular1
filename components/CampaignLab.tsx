@@ -21,8 +21,9 @@ export const CampaignLab: React.FC = () => {
     setError(null);
 
     try {
-      // Safe access to API Key
-      const apiKey = process?.env?.API_KEY;
+      // Direct access required for Vite build replacement
+      const apiKey = process.env.API_KEY;
+      
       if (!apiKey) {
         throw new Error("API Key not found. Please ensure process.env.API_KEY is configured.");
       }
