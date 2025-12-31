@@ -1,20 +1,32 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
 
-# Run and deploy your AI Studio app
+# Le Sector Website - Asset Management
 
-This contains everything you need to run your app locally.
+This project uses a **`public`** folder to manage static assets like images and configuration files. This ensures your logo and settings can be updated easily without changing the code.
 
-View your app in AI Studio: https://ai.studio/apps/drive/15pJdp4X_5egZXJvgx4AwmvEKSmXDUBZ0
+## 1. How to Upload Your Logo
 
-## Run Locally
+To replace the default logo with your own brand image:
 
-**Prerequisites:**  Node.js
+1.  **Locate the `public` folder** in your file explorer.
+2.  **Upload your image file** into this folder.
+3.  **Rename the file** to `logo.png` (or `logo.jpg`, `logo.svg` etc).
 
+## 2. Configuring the Site
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The site looks for a settings file located at `public/site-settings.json`. You can edit this file to point to your new logo.
+
+**Example `public/site-settings.json`:**
+
+```json
+{
+  "logoUrl": "/logo.png",
+  "footerLogoUrl": "/logo.png"
+}
+```
+
+*Note: The path `/logo.png` works because files in the `public` folder are served at the root of the website.*
+
+## 3. Troubleshooting
+
+*   **Logo not showing?** Ensure the filename in `site-settings.json` matches your uploaded file exactly (case-sensitive).
+*   **Cached?** If you uploaded a new file with the same name, you might need to hard-refresh your browser (Ctrl+F5 or Cmd+Shift+R).
