@@ -36,7 +36,20 @@ The site looks for a settings file located at `public/site-settings.json`. You c
 
 *Note: The path `/logo.png` works because files in the `public` folder are served at the root of the website.*
 
-## 4. Troubleshooting
+## 4. Deployment (Vercel)
+
+This project is optimized for deployment on Vercel, which handles Vite Single Page Applications (SPAs) efficiently.
+
+1.  **Import Project**: Connect your repository to Vercel.
+2.  **Framework Preset**: Vercel should automatically detect "Vite".
+3.  **Environment Variables**:
+    *   Go to **Settings > Environment Variables**.
+    *   Add `API_KEY` with your Google Gemini API key (required for the Ads Strategy Lab).
+4.  **Deploy**: Click Deploy.
+
+The included `vercel.json` ensures that all routes are correctly directed to `index.html`.
+
+## 5. Troubleshooting
 
 *   **Logo not showing?** Ensure the filename in `site-settings.json` matches your uploaded file exactly (case-sensitive).
 *   **Cached?** If you uploaded a new file with the same name, you might need to hard-refresh your browser (Ctrl+F5 or Cmd+Shift+R).
