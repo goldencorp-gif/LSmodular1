@@ -26,9 +26,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
 
   // Australian Market Rates 2024/25 (AUD)
   const rates = {
-    standard: 3800,
-    premium: 5200, 
-    luxury: 7500   
+    standard: 2200,
+    premium: 3800, 
+    luxury: 5900   
   };
 
   // Site cost multipliers (Groundworks, Cranes, Foundations)
@@ -122,9 +122,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Specification Level</label>
                 <div className="space-y-3">
                   {[
-                    { id: 'standard', label: 'Standard', price: '$3,800/m²', desc: 'Volume spec, vinyl/laminate, standard ceilings.' },
-                    { id: 'premium', label: 'Premium', price: '$5,200/m²', desc: 'Architectural joinery, stone, engineered timber.' },
-                    { id: 'luxury', label: 'Luxury', price: '$7,500/m²', desc: 'Bespoke design, automation, complex cladding.' }
+                    { id: 'standard', label: 'Standard', price: '$2,200/m²', desc: 'Volume spec, vinyl/laminate, standard ceilings.' },
+                    { id: 'premium', label: 'Premium', price: '$3,800/m²', desc: 'Architectural joinery, stone, engineered timber.' },
+                    { id: 'luxury', label: 'Luxury', price: '$5,900/m²', desc: 'Bespoke design, automation, complex cladding.' }
                   ].map((lvl) => (
                     <button
                       key={lvl.id}
