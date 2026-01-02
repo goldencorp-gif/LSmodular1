@@ -12,6 +12,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
   const [finish, setFinish] = useState<'standard' | 'premium' | 'luxury'>('premium');
   const [site, setSite] = useState<'flat' | 'sloped' | 'complex'>('flat');
   const [zone, setZone] = useState<'metro' | 'inner' | 'coastal' | 'regional'>('metro');
+  const [locationInput, setLocationInput] = useState('');
   
   // State for the breakdown
   const [breakdown, setBreakdown] = useState({
@@ -68,6 +69,51 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
       total: total,
       perSqm: Math.round(total / size)
     });
+  };
+
+  const handleLocationCheck = () => {
+    const input = locationInput.toLowerCase().trim();
+    if (!input) return;
+
+    let detected = false;
+
+    // 1. Postcode Logic (Victoria)
+    const postcodeMatch = input.match(/\b(3\d{3})\b/);
+    if (postcodeMatch) {
+      const p = parseInt(postcodeMatch[1], 10);
+      
+      // Inner City: CBD + Immediate surrounds
+      if ((p >= 3000 && p <= 3051) || (p >= 3205 && p <= 3207)) {
+        setZone('inner');
+        detected = true;
+      }
+      // Coastal: Mornington Peninsula / Surf Coast
+      else if ((p >= 3910 && p <= 3999) || (p >= 3220 && p <= 3230) || (p >= 3926 && p <= 3944)) {
+        setZone('coastal');
+        detected = true;
+      }
+      // Metro: Greater Melbourne standard zones
+      else if ((p >= 3000 && p <= 3204) || (p >= 3800 && p <= 3810)) {
+        setZone('metro');
+        detected = true;
+      }
+      // Regional: Remainder of VIC
+      else if (p >= 3211 && p <= 3999) {
+        setZone('regional');
+        detected = true;
+      }
+    }
+
+    // 2. Suburb Keyword Logic (Fallback)
+    if (!detected) {
+      const innerSuburbs = ['melbourne', 'southbank', 'docklands', 'carlton', 'fitzroy', 'collingwood', 'richmond', 'south yarra', 'prahran', 'st kilda', 'albert park'];
+      const coastalSuburbs = ['sorrento', 'portsea', 'rye', 'rosebud', 'dromana', 'mornington', 'torquay', 'anglesea', 'lorne', 'ocean grove', 'barwon heads', 'flinders', 'red hill'];
+      const regionalSuburbs = ['geelong', 'ballarat', 'bendigo', 'shepparton', 'traralgon', 'warrnambool', 'mildura', 'echuca', 'daylesford'];
+
+      if (innerSuburbs.some(s => input.includes(s))) { setZone('inner'); detected = true; }
+      else if (coastalSuburbs.some(s => input.includes(s))) { setZone('coastal'); detected = true; }
+      else if (regionalSuburbs.some(s => input.includes(s))) { setZone('regional'); detected = true; }
+    }
   };
 
   const formatMoney = (amount: number) => {
@@ -148,6 +194,22 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
               {/* Location Zone (New) */}
               <div>
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Project Zone & Access</label>
+                <div className="mb-4 flex gap-2">
+                  <input 
+                    type="text" 
+                    value={locationInput}
+                    onChange={(e) => setLocationInput(e.target.value)}
+                    placeholder="Suburb or Postcode"
+                    onKeyDown={(e) => e.key === 'Enter' && handleLocationCheck()}
+                    className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-300 text-sm font-bold text-slate-900"
+                  />
+                  <button 
+                    onClick={handleLocationCheck}
+                    className="px-4 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-colors shadow-lg shadow-slate-900/10"
+                  >
+                    Check
+                  </button>
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   {Object.entries(zoneLoadings).map(([key, data]) => (
                     <button
