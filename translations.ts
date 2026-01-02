@@ -58,7 +58,13 @@ export const TRANSLATIONS: Record<Language, any> = {
       whoTitle: 'Who We Are',
       whoMain: 'Le Sector specialises in delivering modular housing from custom-designed plans.',
       whoSub1: 'We work with homeowners, architects, designers, and developers who already have a vision—and need a delivery partner who understands both design intent and construction reality.',
-      whoSub2: 'Our role is to bridge the gap between concept and completion by coordinating design optimisation, modular manufacturing, and site readiness into one integrated pathway.'
+      whoSub2: 'Our role is to bridge the gap between concept and completion by coordinating design optimisation, modular manufacturing, and site readiness into one integrated pathway.',
+      salesPoints: {
+        warranty: { title: "Regulated Warranty", desc: "Full standard building warranty protection (7 years), exactly like regulated traditional construction." },
+        delays: { title: "No Site Delays", desc: "Never have labour stages on site. Factory manufacturing eliminates rain delays and trade gaps." },
+        fixedPrice: { title: "Fixed Price Contract", desc: "Stay Fixed Price. We lock in the cost before manufacturing begins, providing total financial certainty." },
+        costRises: { title: "No Cost Rises", desc: "Never face material cost raises. We procure materials upfront to protect you from inflation." }
+      }
     },
     ecosystem: {
       tag: 'Integrated Ecosystem',
@@ -196,7 +202,13 @@ export const TRANSLATIONS: Record<Language, any> = {
       whoTitle: '我们是谁',
       whoMain: 'Le Sector 专注于根据客户定制的设计方案交付模块化住宅。',
       whoSub1: '我们与已经拥有愿景的房主、建筑师、设计师和开发商合作——他们需要一个既了解设计意图又了解建筑现实的交付合作伙伴。',
-      whoSub2: '我们的职责是通过协调设计优化、模块化制造和现场准备，将概念与完成之间的鸿沟转化为一条综合交付路径。'
+      whoSub2: '我们的职责是通过协调设计优化、模块化制造和现场准备，将概念与完成之间的鸿沟转化为一条综合交付路径。',
+      salesPoints: {
+        warranty: { title: "受监管的保修", desc: "完全标准的建筑保修保护（7年），就像受监管的传统建筑一样。" },
+        delays: { title: "无现场延误", desc: "现场绝无劳工阶段。工厂制造消除了因雨天延误和工种衔接的问题。" },
+        fixedPrice: { title: "固定价格合同", desc: "保持固定价格。我们在制造开始前锁定成本，提供完全的财务确定性。" },
+        costRises: { title: "无成本上涨", desc: "绝无材料成本上涨。我们预先采购材料，保护您免受通货膨胀影响。" }
+      }
     },
     ecosystem: {
       tag: '集成生态系统',
@@ -334,7 +346,13 @@ export const TRANSLATIONS: Record<Language, any> = {
       whoTitle: 'Chúng tôi là ai',
       whoMain: 'Le Sector chuyên cung cấp nhà ở lắp ghép từ các bản thiết kế tùy chỉnh.',
       whoSub1: 'Chúng tôi làm việc với chủ nhà, kiến trúc sư và nhà phát triển—những người cần một đối tác hiểu cả ý đồ thiết kế và thực tế xây dựng.',
-      whoSub2: 'Vai trò của chúng tôi là thu hép khoảng cách giữa ý tưởng và hoàn thiện.'
+      whoSub2: 'Vai trò của chúng tôi là thu hép khoảng cách giữa ý tưởng và hoàn thiện.',
+      salesPoints: {
+        warranty: { title: "Bảo hành quy định", desc: "Bảo hành xây dựng tiêu chuẩn đầy đủ (7 năm), giống hệt như xây dựng truyền thống." },
+        delays: { title: "Không trễ tiến độ", desc: "Không có giai đoạn nhân công tại chỗ. Sản xuất nhà máy loại bỏ chậm trễ do thời tiết." },
+        fixedPrice: { title: "Hợp đồng giá cố định", desc: "Giữ giá cố định. Chúng tôi chốt chi phí trước khi sản xuất để đảm bảo tài chính." },
+        costRises: { title: "Không tăng chi phí", desc: "Không tăng giá vật liệu. Chúng tôi mua vật liệu trước để tránh lạm phát." }
+      }
     },
     ecosystem: {
       tag: 'Hệ sinh thái tích hợp',
@@ -472,7 +490,13 @@ export const TRANSLATIONS: Record<Language, any> = {
       whoTitle: 'हम कौन हैं',
       whoMain: 'Le Sector कस्टम-डिज़ाइन की गई योजनाओं से मॉड्यूलर आवास वितरित करने में माहिर है।',
       whoSub1: 'हम उन घर मालिकों, वास्तुकारों, डिजाइनरों और डेवलपर्स के साथ काम करते हैं जिनके पास पहले से ही एक विजन है—और जिन्हें एक ऐसे वितरण भागीदार की आवश्यकता है जो डिज़ाइन के उद्देश्य और निर्माण की वास्तविकता दोनों को समझता हो।',
-      whoSub2: 'हमारी भूमिका डिजाइन अनुकूलन, मॉड्यूलर विनिर्माण और साइट की तैयारी को एक एकीकृत मार्ग में समन्वित करके अवधारणा और पूर्णता के बीच की खाई को पाटने की है।'
+      whoSub2: 'हमारी भूमिका डिजाइन अनुकूलन, मॉड्यूलर विनिर्माण और साइट की तैयारी को एक एकीकृत मार्ग में समन्वित करके अवधारणा और पूर्णता के बीच की खाई को पाटने की है।',
+      salesPoints: {
+        warranty: { title: "विनियमित वारंटी", desc: "पूर्ण मानक भवन वारंटी सुरक्षा (7 वर्ष), बिल्कुल पारंपरिक निर्माण की तरह।" },
+        delays: { title: "साइट पर कोई देरी नहीं", desc: "साइट पर कभी भी श्रम चरण नहीं होते। फैक्टरी विनिर्माण बारिश की देरी को समाप्त करता है।" },
+        fixedPrice: { title: "निश्चित मूल्य अनुबंध", desc: "निश्चित मूल्य पर रहें। हम विनिर्माण शुरू होने से पहले लागत को लॉक करते हैं।" },
+        costRises: { title: "कोई लागत वृद्धि नहीं", desc: "कभी भी सामग्री लागत वृद्धि का सामना न करें। हम पहले ही सामग्री खरीद लेते हैं।" }
+      }
     },
     ecosystem: {
       tag: 'एकीकृत पारिस्थितिकी तंत्र',

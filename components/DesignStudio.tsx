@@ -1,13 +1,21 @@
 
 import React, { useState } from 'react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-export const DesignStudio: React.FC = () => {
+interface DesignStudioProps {
+  language: Language;
+}
+
+export const DesignStudio: React.FC<DesignStudioProps> = ({ language }) => {
   const [layout, setLayout] = useState<'linear' | 'l-shape' | 'stacked'>('linear');
   const [cladding, setCladding] = useState<'timber' | 'monument' | 'concrete'>('timber');
   const [roof, setRoof] = useState<'flat' | 'pitched'>('flat');
   const [windows, setWindows] = useState<'panoramic' | 'punched'>('panoramic');
   const [deck, setDeck] = useState(false);
   const [timeOfDay, setTimeOfDay] = useState<'day' | 'night'>('day');
+
+  const t = TRANSLATIONS[language].footer;
 
   // Approximate Base Pricing
   const getPrice = () => {
@@ -36,7 +44,7 @@ export const DesignStudio: React.FC = () => {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">Gadgets</h2>
+            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">{t.col1}</h2>
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tighter">Design Studio 2.0</h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
               Configure your modular archetype. Toggle environment settings and explore architectural finishes in real-time.

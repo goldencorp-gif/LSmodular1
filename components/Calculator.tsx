@@ -1,7 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-export const Calculator: React.FC = () => {
+interface CalculatorProps {
+  language: Language;
+}
+
+export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
   const [size, setSize] = useState<number>(180);
   const [finish, setFinish] = useState<'standard' | 'premium' | 'luxury'>('premium');
   const [site, setSite] = useState<'flat' | 'sloped' | 'complex'>('flat');
@@ -15,6 +21,8 @@ export const Calculator: React.FC = () => {
     total: 0,
     perSqm: 0
   });
+
+  const t = TRANSLATIONS[language].footer;
 
   // Australian Market Rates 2024/25 (AUD)
   const rates = {
@@ -75,7 +83,7 @@ export const Calculator: React.FC = () => {
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">Gadgets</h2>
+            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">{t.col1}</h2>
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tighter">Project Feasibility Estimator</h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
               Modular construction shifts cost from "unpredictable site labor" to "fixed factory production". 

@@ -86,9 +86,9 @@ const App: React.FC = () => {
       case PageVariant.HOW_IT_WORKS: return <HowItWorks language={language} />;
       case PageVariant.FAQ: return <FAQ language={language} />;
       case PageVariant.CONTACT: return <Contact language={language} />;
-      case PageVariant.CALCULATOR: return <Calculator />;
-      case PageVariant.MEASURER: return <SiteMeasurer />;
-      case PageVariant.DESIGN_STUDIO: return <DesignStudio />;
+      case PageVariant.CALCULATOR: return <Calculator language={language} />;
+      case PageVariant.MEASURER: return <SiteMeasurer language={language} />;
+      case PageVariant.DESIGN_STUDIO: return <DesignStudio language={language} />;
       
       case PageVariant.HOMEOWNERS:
       case PageVariant.DEVELOPERS:

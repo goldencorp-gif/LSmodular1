@@ -1,13 +1,21 @@
 
 import React, { useState, useEffect } from 'react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-export const SiteMeasurer: React.FC = () => {
+interface SiteMeasurerProps {
+  language: Language;
+}
+
+export const SiteMeasurer: React.FC<SiteMeasurerProps> = ({ language }) => {
   const [width, setWidth] = useState(15);
   const [depth, setDepth] = useState(30);
   const [setbackFront, setSetbackFront] = useState(6);
   const [setbackRear, setSetbackRear] = useState(3);
   const [setbackSide, setSetbackSide] = useState(1.5);
   const [hasCraneAccess, setHasCraneAccess] = useState(true);
+
+  const t = TRANSLATIONS[language].footer;
 
   // Derived state
   const buildableWidth = Math.max(0, width - (setbackSide * 2));
@@ -25,7 +33,7 @@ export const SiteMeasurer: React.FC = () => {
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">Gadgets</h2>
+            <h2 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4">{t.col1}</h2>
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tighter">Site Feasibility Measurer</h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
               Modular homes require specific setbacks for crane access and module placement. 

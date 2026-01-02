@@ -63,8 +63,8 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
                         <i className="fa-solid fa-file-shield"></i>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-2">Regulated Warranty</h3>
-                        <p className="text-blue-100 text-sm leading-relaxed">Full standard building warranty protection (7 years), exactly like regulated traditional construction.</p>
+                        <h3 className="font-bold text-lg mb-2">{t.salesPoints?.warranty?.title || "Regulated Warranty"}</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">{t.salesPoints?.warranty?.desc || "Full standard building warranty protection (7 years), exactly like regulated traditional construction."}</p>
                     </div>
                 </div>
 
@@ -73,8 +73,8 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
                         <i className="fa-solid fa-person-digging"></i>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-2">No Site Delays</h3>
-                        <p className="text-blue-100 text-sm leading-relaxed">Never have labour stages on site. Factory manufacturing eliminates rain delays and trade gaps.</p>
+                        <h3 className="font-bold text-lg mb-2">{t.salesPoints?.delays?.title || "No Site Delays"}</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">{t.salesPoints?.delays?.desc || "Never have labour stages on site. Factory manufacturing eliminates rain delays and trade gaps."}</p>
                     </div>
                 </div>
 
@@ -83,8 +83,8 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
                         <i className="fa-solid fa-lock"></i>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-2">Fixed Price Contract</h3>
-                        <p className="text-blue-100 text-sm leading-relaxed">Stay Fixed Price. We lock in the cost before manufacturing begins, providing total financial certainty.</p>
+                        <h3 className="font-bold text-lg mb-2">{t.salesPoints?.fixedPrice?.title || "Fixed Price Contract"}</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">{t.salesPoints?.fixedPrice?.desc || "Stay Fixed Price. We lock in the cost before manufacturing begins, providing total financial certainty."}</p>
                     </div>
                 </div>
 
@@ -93,8 +93,8 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
                         <i className="fa-solid fa-arrow-trend-up"></i>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-2">No Cost Rises</h3>
-                        <p className="text-blue-100 text-sm leading-relaxed">Never face material cost raises. We procure materials upfront to protect you from inflation.</p>
+                        <h3 className="font-bold text-lg mb-2">{t.salesPoints?.costRises?.title || "No Cost Rises"}</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">{t.salesPoints?.costRises?.desc || "Never face material cost raises. We procure materials upfront to protect you from inflation."}</p>
                     </div>
                 </div>
             </div>
