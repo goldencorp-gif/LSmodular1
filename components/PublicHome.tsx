@@ -54,6 +54,53 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
         </div>
       </section>
 
+      {/* Sales Points / Trust Bar */}
+      <section className="bg-blue-600 py-16 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-white">
+                <div className="flex flex-col gap-4 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:bg-white group-hover:text-blue-600 transition-colors">
+                        <i className="fa-solid fa-file-shield"></i>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg mb-2">Regulated Warranty</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">Full standard building warranty protection (7 years), exactly like regulated traditional construction.</p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-4 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:bg-white group-hover:text-blue-600 transition-colors">
+                        <i className="fa-solid fa-person-digging"></i>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg mb-2">No Site Delays</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">Never have labour stages on site. Factory manufacturing eliminates rain delays and trade gaps.</p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-4 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:bg-white group-hover:text-blue-600 transition-colors">
+                        <i className="fa-solid fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg mb-2">Fixed Price Contract</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">Stay Fixed Price. We lock in the cost before manufacturing begins, providing total financial certainty.</p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-4 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl group-hover:bg-white group-hover:text-blue-600 transition-colors">
+                        <i className="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg mb-2">No Cost Rises</h3>
+                        <p className="text-blue-100 text-sm leading-relaxed">Never face material cost raises. We procure materials upfront to protect you from inflation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
       {/* Who We Are (Positioning) */}
       <section className="py-32 bg-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
