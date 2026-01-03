@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Language, PageVariant } from '../types';
 import { TRANSLATIONS } from '../translations';
 import { SYSTEM_VERSION } from '../constants';
@@ -16,6 +16,11 @@ export const Footer: React.FC<FooterProps> = ({ language, setVariant, logoUrl })
   const [imgError, setImgError] = useState(false);
   const t = TRANSLATIONS[language].footer;
   const tn = TRANSLATIONS[language].nav;
+
+  // Reset image error state if the logo URL changes
+  useEffect(() => {
+    setImgError(false);
+  }, [logoUrl]);
 
   // Gadget Links specific to the requested change
   const gadgetLinks = [

@@ -17,6 +17,11 @@ export const Navigation: React.FC<NavigationProps> = ({ currentVariant, setVaria
   const [showAdmin, setShowAdmin] = useState(false);
   const t = TRANSLATIONS[language].nav;
 
+  // Reset image error state if the logo URL changes (e.g., after loading site-settings.json)
+  useEffect(() => {
+    setImgError(false);
+  }, [logoUrl]);
+
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     if (searchParams.get('admin') === 'true') {
