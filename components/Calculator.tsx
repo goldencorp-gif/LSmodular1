@@ -25,26 +25,41 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
 
   const t = TRANSLATIONS[language].footer;
 
-  // Australian Market Rates 2024/25 (AUD)
-  const rates = {
+  // 1. MODULE MANUFACTURE RATES (Per m²)
+  // This is the only cost that changes based on "Specification Level"
+  const moduleRates = {
     standard: 2200,
     premium: 3800, 
     luxury: 5900   
   };
 
-  // Site cost multipliers (Groundworks, Cranes, Foundations)
-  const siteMultipliers = {
-    flat: 0.15,
-    sloped: 0.35,
-    complex: 0.55
+  // 2. COREBASE SITE RATES (Per m² Base Rate)
+  // Base rate covers: Screw piles, trenching, connection to mains.
+  // Updated to $450/m2 to be more realistic for standard flat sites.
+  const siteBaseRatePerSqm = 450; 
+
+  // Multipliers for Topography difficulty
+  const siteDifficultyFactors = {
+    flat: 1.0,      // Standard Piling ($450/m2)
+    sloped: 1.6,    // Deeper piles, some retaining ($720/m2)
+    complex: 2.8    // Engineering heavy, significant earthworks ($1260/m2)
   };
 
-  // Location/Zone Loadings (Transport, Travel, Traffic Control, Marine Grade)
-  const zoneLoadings = {
-    metro: { factor: 0, label: 'Metro Melbourne', desc: 'Standard transport zone' },
-    inner: { factor: 0.15, label: 'Inner City', desc: 'Tight access, traffic control, permits' },
-    coastal: { factor: 0.08, label: 'Coastal / Peninsula', desc: 'Marine grade protection + transport' },
-    regional: { factor: 0.20, label: 'Regional Vic', desc: 'Long-haul transport + crew travel' }
+  // 3. LOGISTICS & ACCESS RATES (Per m²)
+  // Covers: Cranes, Transport Trucks, Traffic Management, Crew Travel Allowance.
+  // NOT Council Levies (CIL) or Planning Permit fees.
+  const zoneRatesPerSqm = {
+    metro: 0,       // Standard inclusion
+    inner: 450,     // Tight access cranes, traffic control, road closures
+    coastal: 250,   // Marine grade protection + travel allowance
+    regional: 350   // Long haul transport + crew accommodation
+  };
+
+  const zoneLabels = {
+    metro: { label: 'Metro Melbourne', desc: 'Standard Access' },
+    inner: { label: 'Inner City', desc: 'Tight Access / Traffic Control' },
+    coastal: { label: 'Coastal / Peninsula', desc: 'Marine Grade / Travel' },
+    regional: { label: 'Regional Vic', desc: 'Long Haul / Crew Allowance' }
   };
 
   useEffect(() => {
@@ -52,13 +67,14 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
   }, [size, finish, site, zone]);
 
   const calculate = () => {
-    const baseModuleCost = size * rates[finish];
+    // 1. The House (Changes with Finish)
+    const baseModuleCost = size * moduleRates[finish];
     
-    // Site works are a percentage of the build (foundations etc)
-    const estimatedSiteCost = baseModuleCost * siteMultipliers[site];
+    // 2. The Ground (Independent of Finish)
+    const estimatedSiteCost = (size * siteBaseRatePerSqm) * siteDifficultyFactors[site];
     
-    // Logistics is a loading on top of the base cost based on location difficulty
-    const estimatedLogistics = baseModuleCost * zoneLoadings[zone].factor;
+    // 3. The Logistics (Independent of Finish)
+    const estimatedLogistics = size * zoneRatesPerSqm[zone];
 
     const total = baseModuleCost + estimatedSiteCost + estimatedLogistics;
 
@@ -211,7 +227,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                   </button>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {Object.entries(zoneLoadings).map(([key, data]) => (
+                  {Object.entries(zoneLabels).map(([key, data]) => (
                     <button
                       key={key}
                       onClick={() => setZone(key as any)}
@@ -298,11 +314,15 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                          </span>
                          <span className="text-slate-300">{formatMoney(breakdown.siteCost)}</span>
                       </div>
-                      <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-4 bg-white/10 rounded-full overflow-hidden mb-2">
                         <div 
                           className="h-full bg-purple-500 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all duration-500"
                           style={{ width: `${(breakdown.siteCost / breakdown.total) * 100}%` }}
                         ></div>
+                      </div>
+                      <div className="flex justify-between items-center text-[9px] text-slate-500 italic">
+                        <span>Calculated based on floor area ({size}m²) and site difficulty ({site}).</span>
+                        <span className="text-slate-400 font-bold bg-white/10 px-2 py-0.5 rounded">~{formatMoney(siteBaseRatePerSqm * siteDifficultyFactors[site])}/m²</span>
                       </div>
                     </div>
 
@@ -312,7 +332,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                         <div className="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
                            <span className="flex items-center gap-2">
                              Logistics & Zone Loading
-                             <span className="bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded text-[8px]">{zoneLoadings[zone].label.toUpperCase()}</span>
+                             <span className="bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded text-[8px]">{zoneLabels[zone].label.toUpperCase()}</span>
                            </span>
                            <span className="text-slate-300">{formatMoney(breakdown.logisticsCost)}</span>
                         </div>
@@ -323,7 +343,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                           ></div>
                         </div>
                         <p className="text-[10px] text-slate-400 mt-1 italic">
-                          Includes: {zone === 'regional' ? 'Crew travel, accommodation, long-haul transport.' : zone === 'inner' ? 'Traffic management, tight access cranes.' : 'Marine grade materials, transport.'}
+                          Includes: {zoneLabels[zone].desc}. Calculated at a fixed rate per m².
                         </p>
                       </div>
                     )}
@@ -341,13 +361,13 @@ export const Calculator: React.FC<CalculatorProps> = ({ language }) => {
                     <i className="fa-solid fa-circle-info"></i>
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-2">Market Data Source (2025)</h4>
+                    <h4 className="font-bold text-slate-900 mb-2">About these figures</h4>
                     <p className="text-sm text-slate-500 leading-relaxed mb-4">
-                      Figures based on Australian market rates. "Zone Loading" covers transport, access difficulty, and travel allowances.
+                      Costs are separated to ensure transparency. "Luxury" finishes only increase the Module cost, not the foundations or transport.
                     </p>
                     <ul className="text-xs text-slate-400 space-y-1 list-disc pl-4">
-                      <li><strong>Includes:</strong> GST, Manufacturing, Standard Transport, Cranage, Screw Piles.</li>
-                      <li><strong>Excludes:</strong> Council Infrastructure Levies (varies by street), Planning Permits, Consultant Fees (~10%).</li>
+                      <li><strong>Includes:</strong> GST, Manufacturing, Standard Transport, Cranage, Screw Piles/Footings.</li>
+                      <li><strong>Excludes:</strong> Council Infrastructure Levies (CIL), Developer Contributions, Planning Permit Fees.</li>
                     </ul>
                   </div>
                 </div>
