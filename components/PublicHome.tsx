@@ -26,7 +26,7 @@ export const PublicHome: React.FC<PublicHomeProps> = ({ onSelectVariant, languag
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/40 to-transparent"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 w-full pt-32">
           <div className="max-w-3xl">
             <h1 className="text-6xl lg:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9] animate-in fade-in slide-in-from-left-8 duration-1000">
               {t.heroTitle.split('.').map((chunk: string, i: number) => (
