@@ -20,10 +20,11 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>(Language.EN);
   const [notification, setNotification] = useState<string | null>(null);
   
-  // Settings for Logos
+  // Settings for Logos and Analytics
   const [siteSettings, setSiteSettings] = useState<SiteSettings>({
     logoUrl: '/logo.svg', // Default vector logo
-    footerLogoUrl: undefined // Will fallback to logoUrl if not set in JSON
+    footerLogoUrl: undefined, // Will fallback to logoUrl if not set in JSON
+    googleAnalyticsId: undefined
   });
 
   useEffect(() => {
@@ -47,6 +48,34 @@ const App: React.FC = () => {
         // Silent failure: file likely doesn't exist, use defaults
       });
   }, []);
+
+  // Inject Google Analytics when ID is loaded
+  useEffect(() => {
+    if (siteSettings.googleAnalyticsId) {
+      const gaId = siteSettings.googleAnalyticsId;
+      
+      // Prevent duplicate injection
+      if (document.getElementById('ga-script')) return;
+
+      // 1. Load the GTag script
+      const script = document.createElement('script');
+      script.id = 'ga-script';
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+      document.head.appendChild(script);
+
+      // 2. Initialize GTag
+      const inlineScript = document.createElement('script');
+      inlineScript.id = 'ga-init';
+      inlineScript.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${gaId}');
+      `;
+      document.head.appendChild(inlineScript);
+    }
+  }, [siteSettings.googleAnalyticsId]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

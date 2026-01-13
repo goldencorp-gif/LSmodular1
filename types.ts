@@ -24,6 +24,7 @@ export enum PageVariant {
 export interface SiteSettings {
   logoUrl?: string;
   footerLogoUrl?: string;
+  googleAnalyticsId?: string;
 }
 
 export interface LandingPageContent {
